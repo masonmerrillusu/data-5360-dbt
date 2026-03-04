@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: insurance_landing
+    database: masonmerrill
+    schema: INSURANCE_DW_SOURCE
+    tables:
+      - name: agents
+      - name: claims
+      - name: customers
+      - name: policies
