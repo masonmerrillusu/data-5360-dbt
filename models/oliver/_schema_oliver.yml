@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: oliver_dim_customer
+    description: "Oliver Customers Dimension containing Name, Email, Phone Number, and State of customers."
+  - name: oliver_dim_date
+    description: "Oliver Date Dimension containing Day of Week, Month, Quarter, and Year."
+  - name: oliver_dim_store
+    description: "Oliver Store Dimension containing Store Name, Street, City, and State of stores."
+  - name: oliver_dim_product
+    description: "Oliver product Dimension containing Product Name and Description of products"
+  - name: oliver_dim_employee
+    description: "Oliver Employee Dimension containing Name, Email, Phone number, Hire Date and Position of employees."
+  - name: fact_sales
+    description: "Sales Fact for Oliver's sweets and drinks."
