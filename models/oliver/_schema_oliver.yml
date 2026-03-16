@@ -13,3 +13,7 @@ models:
     description: "Oliver Employee Dimension containing Name, Email, Phone number, Hire Date and Position of employees."
   - name: fact_sales
     description: "Sales Fact for Oliver's sweets and drinks."
+  - name: stg_employee_certifications
+    description: "Staging model for employee certifications, parsing JSON data into columns."
+  - name: fact_certification
+    description: "Fact table for employee certifications. The grain of this table is one record per certification earned by an employee."
