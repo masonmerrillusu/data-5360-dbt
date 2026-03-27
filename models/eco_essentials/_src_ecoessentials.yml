@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: ecoessentials_landing
+    database: masonmerrill
+    schema: rds_ecoessentials_ecoessentials_transactional_db
+    tables:
+      - name: customer
+      - name: order
+        identifier: ORDER
+        quoting:
+          identifier: true
+      - name: order_line
+      - name: product
+      - name: promotional_campaign
+
+  - name: s3_landing_marketingemails
+    database: masonmerrill
+    schema: fivetran_s3
+    tables:
+      - name: marketingemails
