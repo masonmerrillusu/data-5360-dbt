@@ -3,6 +3,10 @@ version: 2
 models:
   - name: oliver_dim_customer
     description: "Oliver Customers Dimension containing Name, Email, Phone Number, and State of customers."
+    columns:
+      - name: cust_key
+        tests:
+          - unique
   - name: oliver_dim_date
     description: "Oliver Date Dimension containing Day of Week, Month, Quarter, and Year."
   - name: oliver_dim_store
@@ -11,9 +15,31 @@ models:
     description: "Oliver product Dimension containing Product Name and Description of products"
   - name: oliver_dim_employee
     description: "Oliver Employee Dimension containing Name, Email, Phone number, Hire Date and Position of employees."
+    columns:
+      - name: position
+        tests:
+          - accepted_values:
+              values:
+                - "Customer Service"
+                - "Sales Associate"
+                - "Stock Clerk"
+                - "Cashier"
+                - "Manager"
   - name: fact_sales
     description: "Sales Fact for Oliver's sweets and drinks."
+    columns:
+      - name: product_key
+        description: "A foreign key to the oliver product dimension"
+        tests:
+        - not_null
   - name: stg_employee_certifications
     description: "Staging model for employee certifications, parsing JSON data into columns."
   - name: fact_certification
     description: "Fact table for employee certifications. The grain of this table is one record per certification earned by an employee."
+    columns:
+      - name: employee_key
+        tests:
+          - relationships:
+              to: ref('oliver_dim_employee')
+              field: employee_key
+    
