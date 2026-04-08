@@ -17,6 +17,7 @@ select
     cust.customer_key as customer_key,
     e.event_key       as event_key,
     d.date_key        as date_key,
+    cast(s.interaction_timestamp as time) as time_key,
     camp.campaign_key as campaign_key
 
 from staging s
