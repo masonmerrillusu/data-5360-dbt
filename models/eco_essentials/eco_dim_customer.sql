@@ -6,7 +6,12 @@ with db_customer as (
     select * from {{ source('ecoessentials_landing', 'customer') }}
 ),
 s3_subscriber as (
-    select * from {{ ref('stg_marketing_emails') }}
+    select distinct 
+        email, 
+        subscriber_id, 
+        first_name, 
+        last_name 
+    from {{ ref('stg_marketing_emails') }}
 ),
 final as (
     select

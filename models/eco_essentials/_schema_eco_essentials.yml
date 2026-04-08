@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: eco_dim_campaign
+    description: "Eco Essentials Marketing Campaign Dimension"
+    columns:
+      - name: campaign_key
+        tests:
+          - unique
+          - not_null
+
+  - name: eco_dim_customer
+    description: "Eco Essentials Customer Dimension"
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
+
+  - name: eco_dim_date
+    description: "Eco Essentials Date Dimension"
+    columns:
+      - name: date_key
+        tests:
+          - unique
+          - not_null
+
+  - name: eco_dim_event
+    description: "Eco Essentials Marketing Event Dimension"
+    columns:
+      - name: event_type
+        tests:
+          - accepted_values: 
+              values: ["SENT", "OPEN", "CLICK"]
+
+  - name: eco_dim_product
+    description: "Eco Essentials Product Dimension"
+    columns:
+      - name: product_key
+        tests:
+          - unique
+
+  - name: eco_fact_email
+    description: "Email Interaction Fact. The grain is email + interaction + timestamp."
+    columns:
+      - name: event_key
+        tests:
+          - relationships:
+              to: ref('eco_dim_event')
+              field: event_key
+
+  - name: eco_fact_order
+    description: "Sales Order Fact. Each record represents a unique product transaction."
+    columns:
+      - name: product_key
+        tests:
+          - relationships:
+              to: ref('eco_dim_product')
+              field: product_key
